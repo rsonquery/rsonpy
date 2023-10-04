@@ -2,7 +2,7 @@ use pyo3::prelude::*;
 use pyo3::types::{PyString, PyStringData};
 
 use rsonpath::engine::{Compiler, Engine, RsonpathEngine};
-use rsonpath::input::{BorrowedBytes, MmapInput};
+use rsonpath::input::{OwnedBytes, MmapInput};
 use rsonpath::query::JsonPathQuery;
 use std::fs::File;
 
@@ -30,7 +30,7 @@ impl PyQuery {
             PyStringData::Ucs1(raw_data) => raw_data,
             _ => panic!("Not UTF-8 encoded string")
         };
-        let input = BorrowedBytes::new(raw_data);
+        let input = OwnedBytes::new(&raw_data).unwrap();
         let mut results = vec![];
         let _ = &self.compile().approximate_spans(&input, &mut results).unwrap();
         let cast = results.into_iter().map(|m| (m.start_idx(), m.end_idx()) ).collect(); 
@@ -58,7 +58,7 @@ impl PyQuery {
             PyStringData::Ucs1(raw_data) => raw_data,
             _ => panic!("Not UTF-8 encoded string")
         };
-        let input = BorrowedBytes::new(raw_data);
+        let input = OwnedBytes::new(&raw_data).unwrap();
         Ok(self.compile().count(&input).unwrap())
     }
 
