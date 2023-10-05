@@ -43,19 +43,21 @@ class JsonResults(Iterable, Sized):
 
     def __len__(self):
         if self.file:
-            return self.query._query.count_f(self.file)
+            if not self.file.exists():
+                raise FileNotFoundError(self.file)
+            return self.query._query.count_f(str(self.file))
         else:
             return self.query._query.count_s(self.input_str)
     
 
-def load(file: Path, query: Union[Query, str]):
+def load(file: Path, query: Union[Query, str], python_parser=None):
     if isinstance(query, str):
-        query = Query(query)
+        query = Query(query, python_parser=python_parser)
     return query.load(file)
 
-def loads(input_str: str, query: Union[Query, str]):
+def loads(input_str: str, query: Union[Query, str], python_parser=None):
     if isinstance(query, str):
-        query = Query(query)
+        query = Query(query, python_parser=python_parser)
     return query.loads(input_str)
 
 
