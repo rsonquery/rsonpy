@@ -104,7 +104,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist -f
+          args: --release --out dist -i CPython3.9 CPython3.10 CPython3.11 CPython3.12 CPython3.13
           sccache: 'true'
       - name: Upload wheels
         uses: actions/upload-artifact@v4
