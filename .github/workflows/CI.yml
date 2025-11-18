@@ -38,13 +38,17 @@ jobs:
       - name: Install maturin
         run: pip install maturin
 
-      - name: Build wheel
-        run: |
-          if [ "${{ runner.os }}" == "Linux" ]; then
-            maturin build --release --out dist --manylinux 2014
-          else
-            maturin build --release --out dist
-          fi
+      - name: Build wheel on Linux
+        if: runner.os == 'Linux'
+        run: maturin build --release --out dist --manylinux 2014
+      
+      - name: Build wheel on macOS
+        if: runner.os == 'macOS'
+        run: maturin build --release --out dist
+      
+      - name: Build wheel on Windows
+        if: runner.os == 'Windows'
+        run: maturin build --release --out dist
 
       - name: Upload wheel artifact
         uses: actions/upload-artifact@v4
