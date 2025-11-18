@@ -116,5 +116,5 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: upload
-          args: --non-interactive --skip-existing dist/*
+          args: --non-interactive --skip-existing dist/*.whl dist/*.tar.gz dist/*/*.whl dist/*/*.tar.gz
 
