@@ -1,9 +1,10 @@
-name: Build and Publish
+name: CI
 
 on:
   push:
     tags:
       - "v*"
+  workflow_dispatch
 
 jobs:
 
