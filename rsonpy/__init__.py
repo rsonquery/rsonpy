@@ -11,6 +11,7 @@ def loads(s: str, query: str, json_loader=json.loads):
     for start, end in rsonpath.loads(s, query):
         yield json.loads(s[start:end])
 
+
 def load(input_file: str, query: str, json_loader=json.loads):
     """
     Parse the input string that is assumed to be a valid JSON-encoding and return an iterator

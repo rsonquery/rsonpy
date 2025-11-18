@@ -40,4 +40,3 @@ def test_load_file_not_found():
     """Test that FileNotFoundError is raised for missing file"""
     with pytest.raises(FileNotFoundError):
         list(rsonpy.load("nonexistent.json", "$.users[*].id"))
-
