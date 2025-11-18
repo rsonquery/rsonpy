@@ -61,7 +61,11 @@ jobs:
     runs-on: macos-13
     strategy:
       matrix:
-        target: [x86_64, arm64]
+        platform:
+          - runner: macos-13
+            target: x86_64-apple-darwin
+          - runner: macos-13
+            target: aarch64-apple-darwin
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
