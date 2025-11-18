@@ -31,7 +31,7 @@ jobs:
           args: --release --out dist
           manylinux: auto
       - name: Upload Linux wheels
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: wheels-linux-${{ matrix.target }}
           path: dist/*
@@ -52,7 +52,7 @@ jobs:
           target: ${{ matrix.target }}
           args: --release --out dist
       - name: Upload Windows wheels
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: wheels-windows-${{ matrix.target }}
           path: dist/*
@@ -77,7 +77,7 @@ jobs:
           target: ${{ matrix.target }}
           args: --release --out dist
       - name: Upload macOS wheels
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: wheels-macos-${{ matrix.platform.target }}
           path: dist/*
@@ -92,7 +92,7 @@ jobs:
           command: sdist
           args: --out dist
       - name: Upload sdist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: sdist
           path: dist/*
