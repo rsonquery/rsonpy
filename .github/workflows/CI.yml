@@ -21,7 +21,7 @@ jobs:
         target: [x86_64, aarch64]
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.11
       - name: Build wheels (Linux)
@@ -43,7 +43,7 @@ jobs:
         target: [x64]
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.11
       - name: Build wheels (Windows)
@@ -68,7 +68,7 @@ jobs:
             target: aarch64-apple-darwin
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.11
       - name: Build wheels (macOS)
